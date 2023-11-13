@@ -53,11 +53,13 @@
                         <a class="nav-link" href="/account/logout">Logout</a>
                     </li>
                     {% else %}
-                        <li class="nav-item">
+                        <li style="display: flex; align-items: center; justify-content: center" class="nav-item">
                             <a class="nav-link" href="/account/login">Login</a>
+                            <p style="margin-top: 2px">/</p>
+                            <a class="nav-link" href="/account/register">Register</a>
                          </li>
                     <li class="nav-item">
-                            <a class="nav-link" href="/account/register">Register</a>
+
                          </li>
                 {% endif %}
             </ul>
