@@ -25,6 +25,11 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="login-wrap p-0">
                         <h3 class="mb-4 text-center">Register Page</h3>
+                        {% if errors %}
+                            {% for item in errors %}
+                                <p class="text text-danger text-center bg-white rounded mb-2">{{ item }}</p>
+                            {% endfor %}
+                        {% endif %}
                         <form action="#" class="signup-form" method="post">
                             {% csrf_token %}
                             <div class="form-group">
@@ -32,6 +37,9 @@
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="name" placeholder="name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="lastname" placeholder="lastname" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" name="email" placeholder="email" required>
