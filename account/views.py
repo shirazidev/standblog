@@ -45,6 +45,7 @@ def user_register(request):
         User.objects.create_user(username=username, password=password1, email=email, first_name=name, last_name=lastname)
         user = authenticate(request, username=username, password=password1)
         login(request, user)
+        return redirect('home:home')
     return render(request, 'account/register.html')
 
 
