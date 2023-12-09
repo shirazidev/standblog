@@ -31,7 +31,7 @@ class Article(models.Model):
     body = models.TextField()
     image = models.ImageField(upload_to="images/articles")
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.title} - {self.body[:30]} - Updated at: {self.updated}"
+        return f"{self.title} - {self.body[:30]} - Updated at: {self.updated.strftime('%Y-%m-%d %H:%M:%S')}"

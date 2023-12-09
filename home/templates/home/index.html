@@ -46,6 +46,11 @@
                 <a class="nav-link" href="../../../templates/contact.html">Contact Us</a>
               </li>
                 {% if request.user.is_authenticated %}
+                    {% if request.user.profile.image %}
+                    <img src="{{ user.profile.image.url }}" width="40px" height="40px" style="border-radius: 20px" alt="{{ user.username }}">
+                        {% else %}
+                        <img src="{% static 'images/noprofile.jpg' %}" width="40px" height="40px" style="border-radius: 20px" alt="{{ user.username }}">
+                        {% endif %}
                     {% if request.user.first_name %}
                         <li class="nav-item">
                         <a class="nav-link" href="#">{{ request.user.first_name }}</a>
