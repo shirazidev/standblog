@@ -1,7 +1,6 @@
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
 
 
 # from .models import
@@ -28,7 +27,7 @@ def user_register(request):
     if request.user.is_authenticated:
         return redirect("/")
     if request.method == "POST":
-        username = request.POST.get("username").lower()
+        request.POST.get("username").lower()
         username = request.POST.get("username").lower()
         email = request.POST.get("email")
         password1 = request.POST.get("password1")
@@ -42,7 +41,8 @@ def user_register(request):
         #     context['errors'].append('this username is exist')
         #     return render(request, 'account/register.html', context)
 
-        User.objects.create_user(username=username, password=password1, email=email, first_name=name, last_name=lastname)
+        User.objects.create_user(username=username, password=password1, email=email, first_name=name,
+                                 last_name=lastname)
         user = authenticate(request, username=username, password=password1)
         login(request, user)
         return redirect('home:home')

@@ -16,6 +16,9 @@ from django.utils import timezone
 
 # do_nothing
 
+#
+#timezone.timedelta
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
     created = models.DateTimeField(default=timezone.now)
@@ -32,6 +35,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to="images/articles")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=timezone.now)
+    is_published = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} - {self.body[:30]} - Updated at: {self.updated.strftime('%Y-%m-%d %H:%M:%S')}"
