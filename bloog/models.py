@@ -36,6 +36,8 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(default=timezone.now)
     is_published = models.BooleanField(default=False)
+    # myfile = models.BinaryField(null=True)
+    myfile = models.FileField(upload_to='blogfiles',null=True)
 
     def __str__(self):
         return f"{self.title} - {self.body[:30]} - Updated at: {self.updated.strftime('%Y-%m-%d %H:%M:%S')}"
