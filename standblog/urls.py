@@ -7,6 +7,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('account/', include('account.urls')),
+    path('articles/', include('bloog.urls')),
     # path('static/', serve, {'document_root': settings.STATIC_ROOT}, name='static'),
 ]
 if settings.DEBUG:

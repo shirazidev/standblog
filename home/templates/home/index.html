@@ -1,85 +1,10 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
-    {% include "home/includes/head_tags.html" %}
-  </head>
-
-  <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>  
-    <!-- ***** Preloader End ***** -->
-
-    <!-- Header -->
-    <header class="">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container">
-          <a class="navbar-brand" href="/"><h2>Stand Blog<em>.</em></h2></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="../../../templates/about.html">About Us</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../../templates/blog.html">Blog Entries</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../../templates/post-details.html">Post Details</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="../../../templates/contact.html">Contact Us</a>
-              </li>
-                {% if request.user.is_authenticated %}
-                    {% if request.user.profile.image %}
-                    <img src="{{ user.profile.image.url }}" width="40px" height="40px" style="border-radius: 20px" alt="{{ user.username }}">
-                        {% else %}
-                        <img src="{% static 'images/noprofile.jpg' %}" width="40px" height="40px" style="border-radius: 20px" alt="{{ user.username }}">
-                        {% endif %}
-                    {% if request.user.first_name %}
-                        <li class="nav-item">
-                        <a class="nav-link" href="#">{{ request.user.first_name }}</a>
-                    </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">{{ request.user.username }}</a>
-                        </li>
-                    {% endif %}
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account:logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-                        <li style="display: flex; align-items: center; justify-content: center" class="nav-item">
-                            <a class="nav-link" href="{% url 'account:login' %}">Login</a>
-                            <p style="margin-top: 2px">/</p>
-                            <a class="nav-link" href="{% url 'account:register' %}">Register</a>
-                         </li>
-                    <li class="nav-item">
-
-                         </li>
-                {% endif %}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
+{% block title %}
+StandBlog - Home Page
+{% endblock %}
+{% block content %}
     <!-- Page Content -->
     <!-- Banner Starts Here -->
     <div class="main-banner header-text">
@@ -93,7 +18,7 @@
                 <div class="meta-category">
                   <span>{{ article.category.first }}</span>
                 </div>
-                <a href="../../../templates/post-details.html"><h4>{{ article.title }}</h4></a>
+                <a href="{% url 'blog:article_detail' article.id %}"><h4>{{ article.title }}</h4></a>
                 <ul class="post-info">
                   <li><a href="#">{{ article.author }}</a></li>
                   <li><a href="#">{{ article.created }}</a></li>
@@ -324,31 +249,4 @@
         </div>
       </div>
     </section>
-
-    
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="social-icons">
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Behance</a></li>
-              <li><a href="#">Linkedin</a></li>
-              <li><a href="#">Dribbble</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-12">
-            <div class="copyright-text">
-              <p>Copyright 2020 Stand Blog Co.
-                    
-                 | Design: <a rel="nofollow" href="https://templatemo.com" target="_parent">TemplateMo</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    {% include "home/includes/body_tags.html" %}
-  </body>
-</html>
+{% endblock %}

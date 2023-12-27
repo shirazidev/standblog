@@ -27,6 +27,14 @@ class Category(models.Model):
         return f'{self.name}'
 
 
+class ArticleManager(models.Manager):
+    def count(self):
+        return len(self.all())
+
+    def published(self):
+        return self.filter(is_published=True)
+
+
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
@@ -38,6 +46,7 @@ class Article(models.Model):
     is_published = models.BooleanField(default=False)
     # myfile = models.BinaryField(null=True)
     myfile = models.FileField(upload_to='blogfiles',null=True)
+    objects = ArticleManager()
 
     def __str__(self):
         return f"{self.title} - {self.body[:30]} - Updated at: {self.updated.strftime('%Y-%m-%d %H:%M:%S')}"
